@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sigma Analyzer</title>
+<style>
+/* Reset & Base */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #0a0a0a;
+  color: #fff;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+}
+a {text-decoration: none; color: inherit;}
+
+/* Navbar */
+nav {
+  position: fixed; top: 0; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(10,10,10,0.8);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,240,255,0.1);
+  transition: all 0.3s ease;
+}
+nav .logo a {font-size: 1.8rem; font-weight: bold; color: #00f0ff;}
+nav .menu a {
+  margin-left: 2rem; font-weight: 500; position: relative; transition: all 0.3s;
+}
+nav .menu a::after {
+  content: ''; position: absolute; width: 0; height: 2px; background: #00f0ff;
+  left: 0; bottom: -4px; transition: width 0.3s ease;
+}
+nav .menu a:hover::after {width: 100%;}
+
+/* Hero */
+.hero {
+  position: relative; /* penting untuk overlay */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: url('https://i.ibb.co.com/whstzLNn/Pngtree-3d-rendering-of-seo-optimization-3893928.jpg') center/cover no-repeat;
+  opacity: 0.5; /* overlay 50% */
+  z-index: -1;
+}
+.hero.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero h1 {
+  font-size: clamp(2.5rem,6vw,4rem);
+  color: #00f0ff; margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(0,240,255,0.5);
+}
+.hero p {
+  font-size: clamp(1rem,2vw,1.4rem);
+  margin-bottom: 2rem;
+  max-width: 650px;
+  color: #ccc;
+}
+.hero button {
+  padding: 0.8rem 2rem; font-size: 1.2rem; font-weight: 600;
+  border: none; border-radius: 30px;
+  background: linear-gradient(90deg,#00f0ff,#00cdd9);
+  color: #0a0a0a; cursor: pointer;
+  transition: all 0.3s ease; box-shadow: 0 6px 25px rgba(0,240,255,0.3);
+}
+.hero button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(0,240,255,0.5);
+}
+
+/* Sections */
+section {
+  padding: 6rem 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+section:nth-child(even){background:#111;}
+section h2 {
+  font-size: clamp(2rem,5vw,2.5rem);
+  color: #00f0ff;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(0,240,255,0.3);
+}
+section p {
+  font-size: clamp(1rem,2vw,1.1rem);
+  max-width: 800px; margin: 0 auto 2rem;
+  color: #ccc; line-height:1.6;
+}
+
+/* Card Grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 2rem; margin-top: 3rem;
+}
+.card {
+  background:#0f0f0f; border-radius:15px;
+  padding:2rem; text-align:center; border:1px solid rgba(0,240,255,0.1);
+  transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,240,255,0.1);
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,240,255,0.3);
+}
+.card h3 {color:#00f0ff; margin-bottom:1rem; font-size:1.3rem;}
+.card p {color:#ccc; font-size:1rem; line-height:1.5;}
+
+/* CTA */
+.cta {
+  background:#111; padding:4rem 2rem; border-radius:15px;
+  margin:3rem auto; max-width:600px;
+  box-shadow: 0 4px 20px rgba(0,240,255,0.1);
+}
+.cta button {
+  padding:1rem 2.5rem; font-size:1.2rem; border:none; border-radius:30px;
+  background:linear-gradient(90deg,#00f0ff,#00cdd9); color:#0a0a0a;
+  cursor:pointer; transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0,240,255,0.3);
+}
+.cta button:hover {
+  transform:scale(1.05);
+  box-shadow: 0 10px 40px rgba(0,240,255,0.5);
+}
+
+/* Footer */
+footer {
+  padding:3rem 2rem; text-align:center; background:#111; color:#888;
+}
+
+/* Fade-in helper */
+.fade-in {opacity:1 !important; transform:translateY(0) !important;}
+
+/* Responsive */
+@media(max-width:768px){
+  nav {padding:1rem 2rem;}
+  nav .menu a {margin-left:1rem;font-size:0.9rem;}
+  .hero h1 {font-size:3rem;}
+  .hero p {font-size:1rem;}
+}
+@media(max-width:480px){
+  .hero h1 {font-size:2.2rem;}
+  .hero p {font-size:0.9rem;}
+  .card {width:90%;}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo"><a href="#">SIGMA</a></div>
+  <div class="menu">
+    <a href="#features">Features</a>
+    <a href="#pro">Pro</a>
+    <a href="#contact">Contact</a>
+    <a href="#">Download</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero fade-in">
+  <h1>Sigma Analyzer Tools</h1>
+  <p>Tools Analisis File untuk data dan performa Anda.
+    <br>Tingkatkan insight dengan cepat dan akurat.</p>
+  <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Mulai Analisa</button>
+</section>
+
+<!-- Features Section -->
+<section id="features">
+  <h2>Fitur Dasar</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>File Analyzer</h3>
+      <p>Scan file tunggal untuk hash, malware, dan indikator keamanan <br>(Hampir Semua Ekstensi).</p>
+    </div>
+    <div class="card">
+      <h3>Folder Analyzer</h3>
+      <p>Scan folder lengkap secara batch dengan progres real-time.</p>
+    </div>
+    <div class="card">
+      <h3>IOC Extraction</h3>
+      <p>Temukan URL, email, IP, bahkan nomor telepon dari file jika ada.</p>
+    </div>
+    <div class="card">
+      <h3>Strings Extraction</h3>
+      <p>Ambil teks penting dari file untuk analisis cepat.</p>
+    </div>
+    <div class="card">
+      <h3>PE Info</h3>
+      <p>Lihat imports, exports, dan entropy file .exe (Windows).</p>
+    </div>
+    <div class="card">
+      <h3>VirusTotal Scan</h3>
+      <p>Cek file dengan lebih dari 70 engine antivirus online.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pro Features Section -->
+<section id="pro">
+  <h2>Fitur PRO</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>Real-Time Protection (RTP)</h3>
+      <p>Pantau folder & proses secara otomatis, hentikan aktivitas mencurigakan.</p>
+    </div>
+    <div class="card">
+      <h3>Automatic Quarantine</h3>
+      <p>Isolasi file atau proses berisiko tinggi secara otomatis.</p>
+    </div>
+    <div class="card">
+      <h3>License PRO</h3>
+      <p>Aktifkan fitur PRO dengan sistem lisensi aman berbasis RSA.</p>
+    </div>
+  </div>
+  <div class="cta">
+    <p>Tingkatkan Fitur Anda dengan Sigma Analyzer Pro!</p>
+<button onclick="window.open('https://t.me/jokothink3r', '_blank')">
+  Upgrade ke Pro
+</button>  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Kontak</h2>
+  <p>Hubungi kami untuk demo atau pertanyaan lebih lanjut : <strong>jokothinker@outlook.com</strong></p>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 HH Analyzer. All rights reserved.
+</footer>
+
+<!-- JS Scroll Fade-in & Smooth Scroll -->
+<script>
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100) section.classList.add('fade-in');
+  });
+});
+
+const menuLinks = document.querySelectorAll('nav a');
+menuLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
