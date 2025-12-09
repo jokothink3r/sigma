@@ -6,7 +6,7 @@
 </p>
 <b>SIGMA Analyzer V3.1</b> It’s a fully featured, next-generation security analysis toolkit designed to detect, investigate, and monitor digital threats with precision. The platform includes a powerful File and Folder Analyzer, built-in VirusTotal integration, IOC extraction (including URLs, IPs, email addresses, phone numbers, and more), PE file inspection, and real-time protection that actively monitors for malicious behavior as it occurs.
 
-It also comes with a professional licensing system, HWID generation, automatic event logging, a quarantine module, and a streamlined, interactive CLI that makes advanced security operations fast and intuitive.
+It also comes with a professional licensing system, HWID generation for regisster PRO license, automatic event logging, a quarantine module, and a streamlined, interactive CLI that makes advanced security operations fast and intuitive.
 
 <p align="center">jokothinker@outlook.com | <a href="http://t.me/jokothink3r">t.me/jokothink3r</a></p>
 
