@@ -5,4 +5,4 @@ SIGMA Analyzer V3.1 adalah alat analisis keamanan tingkat lanjut yang dilengkapi
 Tools ini juga memiliki sistem lisensi PRO, HWID generator, logging otomatis, quarantine system, dan antarmuka CLI interaktif yang mudah digunakan.
 
 jokothinker@outlook.com | t.me/jokothink3r
-![Uploading SIGMAANALYZER.png…]()
+<img width="500" height="500" alt="SIGMAANALYZER" src="https://github.com/user-attachments/assets/908494c0-40fa-42a0-b5f8-3bfe9acd4b71" />
