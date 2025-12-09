@@ -5,6 +5,7 @@
   Contact : jokothinker@outlook.com
   ============================================================
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,30 +17,41 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jokothink3r/sigma/refs/heads/main/SIGMAANALYZER.png">
 
 <style>
-/* Reset & Base */
 * {
   margin: 0; padding: 0; box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+:root {
+  --cyan: #00eaff;
+  --cyan-soft: rgba(0,234,255,0.5);
+  --bg-dark: #050505;
+  --bg-soft: #0d0d0d;
+  --glass: rgba(255,255,255,0.05);
+  --border: rgba(0,234,255,0.18);
+  --text-light: #d5f7ff;
+}
+
 body {
-  background: #0a0a0a;
+  background: var(--bg-dark);
   color: #fff;
-  scroll-behavior: smooth;
   line-height: 1.6;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
-a { text-decoration: none; color: inherit; }
 
-/* Navbar */
+a { color: inherit; text-decoration: none; }
+
+/* Navigation */
 nav {
-  position: fixed; top: 0; width: 100%;
-  display: flex; justify-content: space-between; align-items: center;
+  position: fixed;
+  top: 0; width: 100%;
   padding: 1rem 3rem;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(12px);
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(5,5,5,0.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
   z-index: 1000;
-  border-bottom: 1px solid rgba(0,240,255,0.15);
-  transition: 0.3s ease;
 }
 
 nav .logo {
@@ -47,71 +59,64 @@ nav .logo {
 }
 
 nav .logo img {
-  height: 40px; width: 40px;
+  height: 40px;
 }
 
 nav .logo span {
   font-size: 1.7rem;
-  font-weight: bold;
-  color: #00f0ff;
-  text-shadow: 0 0 12px rgba(0,240,255,0.5);
+  font-weight: 700;
+  color: var(--cyan);
 }
 
-/* Navbar Menu */
 nav .menu {
-  display: flex;
-  gap: 2rem;
+  display: flex; gap: 2rem;
 }
 
 nav .menu a {
   font-size: 1rem;
-  font-weight: 500;
-  color: #dffbff;
+  opacity: 0.85;
   position: relative;
-  padding-bottom: 4px;
-  transition: 0.3s;
-}
-
-nav .menu a::after {
-  content: '';
-  position: absolute;
-  left: 0; bottom: -2px;
-  width: 0; height: 2px;
-  background: #00f0ff;
-  transition: 0.3s;
-  border-radius: 10px;
+  padding-bottom: 3px;
+  transition: 0.3s ease;
 }
 
 nav .menu a:hover {
-  color: #00f0ff;
+  opacity: 1;
+  color: var(--cyan);
 }
 
-nav .menu a:hover::after {
-  width: 100%;
+nav .menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0; height: 2px;
+  background: var(--cyan);
+  border-radius: 10px;
+  transition: 0.3s;
 }
+nav .menu a:hover::after { width: 100%; }
 
-/* Hero */
+/* HERO SECTION */
 .hero {
-  position: relative;
   min-height: 100vh;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center;
   padding: 0 2rem;
-  overflow: hidden;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 1s ease, transform 1s ease;
+  position: relative;
 }
 
 .hero::before {
-  content:"";
-  position:absolute;
-  inset: 0;
+  content: "";
+  position: absolute; inset: 0;
   background: url('https://raw.githubusercontent.com/jokothink3r/sigma/refs/heads/main/SIGMACOVER.png')
     center/cover no-repeat;
-  opacity: 0.55;
-  filter: brightness(0.85);
+  opacity: 0.45;
+  filter: brightness(0.78) saturate(1.1);
   z-index: -1;
 }
 
@@ -121,37 +126,34 @@ nav .menu a:hover::after {
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 6vw, 4rem);
-  color: #00f0ff;
+  color: var(--cyan);
+  font-size: clamp(2.7rem, 6vw, 4rem);
   margin-bottom: 1rem;
-  text-shadow: 0 0 18px rgba(0,240,255,0.5);
 }
 
 .hero p {
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #dcecff;
   max-width: 650px;
-  color: #dcdcdc;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
+  opacity: 0.9;
+  font-size: 1.1rem;
 }
 
 .hero button {
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  padding: 1rem 2.6rem;
+  font-size: 1.15rem;
   border: none;
-  border-radius: 30px;
-  background: linear-gradient(90deg,#00f0ff,#00cdd9);
-  color: #0a0a0a;
+  border-radius: 40px;
+  background: linear-gradient(90deg,#00eaff,#00cdd9);
+  color: #0b0b0b;
   cursor: pointer;
   transition: 0.3s ease;
-  box-shadow: 0 6px 25px rgba(0,240,255,0.3);
 }
 .hero button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 40px rgba(0,240,255,0.5);
+  transform: translateY(-3px);
 }
 
-/* Sections */
+/* SECTION GENERAL */
 section {
   padding: 6rem 2rem;
   text-align: center;
@@ -159,76 +161,91 @@ section {
   transform: translateY(60px);
   transition: 1s ease;
 }
-section:nth-child(even) { background: #111; }
-
-section.fade-in { opacity: 1; transform: translateY(0); }
-
-section h2 {
-  font-size: clamp(2rem,5vw,2.5rem);
-  color: #00f0ff;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(0,240,255,0.35);
+section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+section:nth-child(even) {
+  background: var(--bg-soft);
 }
 
-/* Card Grid */
+section h2 {
+  font-size: clamp(2rem,5vw,2.6rem);
+  color: var(--cyan);
+  margin-bottom: 2.5rem;
+}
+
+/* CARD GRID */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
 
 .card {
-  background:#0f0f0f;
-  border-radius:15px;
-  padding:2rem;
-  border:1px solid rgba(0,240,255,0.1);
-  box-shadow: 0 4px 15px rgba(0,240,255,0.15);
-  transition: 0.3s;
+  background: rgba(12,12,12,0.75);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0,234,255,0.15);
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
+
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,240,255,0.3);
 }
 
-.card h3 { color:#00f0ff; margin-bottom:1rem; font-size:1.3rem; }
-.card p { color:#ccc; }
+.card h3 {
+  color: var(--cyan);
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
 
-/* CTA */
+.card p {
+  color: var(--text-light);
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/*  CTA BOX */
 .cta {
-  margin: 3rem auto;
-  max-width: 600px;
-  background: #111;
+  max-width: 650px;
+  margin: 4rem auto;
+  background: rgba(15,15,15,0.7);
   padding: 3rem 2rem;
-  border-radius: 15px;
-  box-shadow: 0 7px 25px rgba(0,240,255,0.1);
+  border-radius: 18px;
+  border: 1px solid rgba(0,234,255,0.15);
+  backdrop-filter: blur(10px);
 }
 
 .cta button {
-  padding:1rem 2.5rem;
-  font-size:1.2rem;
-  border:none;
-  border-radius: 30px;
-  background:linear-gradient(90deg,#00f0ff,#00cdd9);
-  cursor:pointer;
-  transition:0.3s ease;
-  color:#0a0a0a;
+  padding: 1rem 2.6rem;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(90deg,#00eaff,#00cdd9);
+  cursor: pointer;
+  color: #0b0b0b;
+  transition: 0.3s ease;
 }
 .cta button:hover {
-  transform:scale(1.05);
-  box-shadow:0 10px 40px rgba(0,240,255,0.5);
+  transform: translateY(-3px);
 }
 
-/* Footer */
+/* FOOTER */
 footer {
   padding: 3rem 2rem;
   text-align: center;
-  background: #111;
-  color: #9c9c9c;
+  background: var(--bg-soft);
+  color: #9ebac0;
+  border-top: 1px solid rgba(0,234,255,0.15);
+  font-size: 0.95rem;
 }
 
 /* MOBILE FIXES */
-@media(max-width:768px){
+@media(max-width:768px) {
   nav { padding: 1rem 1.5rem; }
   nav .menu { gap: 1.2rem; }
 }
@@ -250,73 +267,62 @@ footer {
   </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="hero fade-in">
-  <h1>SIGMA</h1>
-  <p>Tools Analisis File untuk data dan performa Anda.<br>
-     Tingkatkan insight dengan cepat dan akurat.</p>
+  <h1>SIGMA ANALYZER</h1>
+  <p>File Analysis Tools for your data and performance.<br>
+Gain insights quickly and accurately.</p>
   <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-    Mulai Analisa
+    <b style="color: white";>Start Analysis</b>
   </button>
 </section>
 
 <!-- Features -->
 <section id="features">
-  <h2>Fitur Dasar</h2>
+  <h2>Basic Features</h2>
 
-  <div class="card-container">
-    <div class="card"><h3>File Analyzer</h3><p>Scan file tunggal untuk hash, malware, dan indikator keamanan<br>
-(Hampir Semua Ekstensi).
-</p></div>
-    <div class="card"><h3>Folder Analyzer</h3><p>Scan folder lengkap secara batch dengan progres <br>real-time.</p></div>
-    <div class="card"><h3>IOC Extraction</h3><p>Otomatis menemukan dan mengambil URL, email, IP, bahkan nomor telepon dari file jika ada.
-</p></div>
-    <div class="card"><h3>Strings Extraction</h3><p>Ambil teks penting dari file untuk analisis cepat.</p></div>
-    <div class="card"><h3>PE Info</h3><p>Lihat imports, exports, dan entropy file .exe (Windows).</p></div>
-    <div class="card"><h3>VirusTotal Scan</h3><p>Scan online 70+ engine AV.</p></div>
-  </div>
+<div class="card-container">
+<div class="card"><h3>File Analyzer</h3><p>Scans single files for hashes, malware, and security indicators.</p></div>
+<div class="card"><h3>Folder Analyzer</h3><p>Scans complete folders with real-time progress.</p></div>
+<div class="card"><h3>IOC Extraction</h3><p>Automatically extracts URLs, emails, IP addresses, and phone numbers.</p></div>
+<div class="card"><h3>Strings Extraction</h3><p>Extracts important text from files.</p></div>
+<div class="card"><h3>PE Info</h3><p>Displays PE info such as imports & exports.</p></div>
+<div class="card"><h3>VirusTotal Scan</h3><p>Online scan with over 70 antivirus engines.</p></div>
+</div>
 
   <div class="cta">
-    <p><b>Coba sekarang!</b></p><br>
-    <button onclick="window.open('https://github.com/jokothink3r/sigma/raw/refs/heads/main/SigmaV3.1.exe', '_blank')">
-      Unduh
-    </button>
+    <h3>SIGMA Analyzer V3.1</h3><br>
+    <button onclick="window.open('https://github.com/jokothink3r/sigma/raw/refs/heads/main/SigmaV3.1.exe', '_blank')"><b style="color: white";>Download</b></button>
   </div>
 </section>
 
-<!-- Pro Section -->
+<!-- Pro -->
 <section id="pro">
-  <h2>Fitur PRO</h2>
+<h2>PRO Features</h2>
 
-  <div class="card-container">
-    <div class="card"><h3>Real-Time Protection</h3><p>Pantau folder & proses secara otomatis, hentikan aktivitas mencurigakan. (Pencegahan penyebaran Malware secara massal)
-</p></div>
-    <div class="card"><h3>Automatic Quarantine</h3><p>Isolasi file berbahaya dan proses berisiko tinggi secara otomatis.
+<div class="card-container">
+<div class="card"><h3>Real-Time Protection</h3><p>Folder and process monitoring to prevent malicious activity.</p></div>
+<div class="card"><h3>Automatic Quarantine</h3><p>Automatic isolation of suspicious files.</p></div>
+<div class="card"><h3>PRO License</h3><p>Secure RSA-based licensing system.</p></div>
+</div>
 
-</p></div>
-    <div class="card"><h3>License PRO</h3><p>Aktifkan fitur PRO dengan sistem lisensi aman berbasis RSA.
-</p></div>
-  </div>
-
-  <div class="cta">
-    <p><b>Tingkatkan ke Sigma Analyzer Pro!</b></p><br>
-    <button onclick="window.open('https://t.me/jokothink3r', '_blank')">Upgrade ke Pro</button>
-  </div>
+<div class="cta">
+<p><b>Upgrade to SIGMA Analyzer Pro!</b></p><br>
+<button onclick="window.open('https://t.me/jokothink3r', '_blank')"><b style="color: white";>Upgrade to Pro</b></button> 
+</div>
 </section>
 
 <!-- Contact -->
-<section id="contact">
-  <h2>Kontak</h2>
-  <p>Hubungi kami: <br><strong>jokothinker@outlook.com | t.me/jokothink3r</strong></p>
+<section id="contact"> 
+<h2>Contact</h2> 
+<p><strong>jokothinker@outlook.com | t.me/jokothink3r</strong></p>
 </section>
 
-<!-- Footer -->
-<footer>
-  © 2025 Sigma by HH Analyzer. All rights reserved.
+<footer> 
+© 2025 HH Analyzer. All rights reserved.
 </footer>
-
+<!-- Fade In Script -->
 <script>
-/* Fade-in Animations */
 const sections = document.querySelectorAll("section");
 window.addEventListener("scroll", () => {
   sections.forEach(sec => {
@@ -325,45 +331,16 @@ window.addEventListener("scroll", () => {
   });
 });
 </script>
+
 <script>
-  document.querySelectorAll('nav .menu a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (!target) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const menu = document.querySelector('nav .menu');
-      if (menu && menu.classList.contains('active')) menu.classList.remove('active');
-    });
+// Smooth nav scroll
+document.querySelectorAll('nav .menu a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
-
-  const ioOptions = {
-    root: null,
-    rootMargin: '0px 0px -10% 0px', 
-    threshold: 0.15
-  };
-
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, ioOptions);
-
-  document.querySelectorAll('section, .hero').forEach(el => io.observe(el));
-
-  window.addEventListener('load', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) hero.classList.add('fade-in');
-  });
-
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('section, .hero').forEach(el => el.classList.add('fade-in'));
-  }
+});
 </script>
-
-
 </body>
 </html>
