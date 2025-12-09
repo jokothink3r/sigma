@@ -6,6 +6,6 @@
 
 Tools ini juga memiliki sistem lisensi PRO, HWID generator, logging otomatis, quarantine system, dan antarmuka CLI interaktif yang mudah digunakan.
 
-<center>jokothinker@outlook.com | <a href="http://t.me/jokothink3r">t.me/jokothink3r</a></center>
+<p align="center">jokothinker@outlook.com | <a href="http://t.me/jokothink3r">t.me/jokothink3r</a></p>
 
 
