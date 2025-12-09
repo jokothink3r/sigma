@@ -1,3 +1,10 @@
+<!-- 
+  ============================================================
+  Copyright (c) 2025 HH Analyzer
+  All Rights Reserved.
+  Contact : jokothinker@outlook.com
+  ============================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -319,51 +326,40 @@ window.addEventListener("scroll", () => {
 });
 </script>
 <script>
-  // 1) Smooth scroll ketika klik navbar (prevent default + scrollIntoView)
   document.querySelectorAll('nav .menu a').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
-      // gunakan smooth scroll yang jelas
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // optional: jika navbar fixed, offset sedikit (bisa di-adjust)
-      // window.scrollBy(0, -10);
-      // close mobile menu jika ada (jika kamu menambahkan fitur mobile)
       const menu = document.querySelector('nav .menu');
       if (menu && menu.classList.contains('active')) menu.classList.remove('active');
     });
   });
 
-  // 2) IntersectionObserver untuk fade-in (lebih andal daripada onscroll)
   const ioOptions = {
     root: null,
-    rootMargin: '0px 0px -10% 0px', // trigger sedikit sebelum elemen sepenuhnya terlihat
+    rootMargin: '0px 0px -10% 0px', 
     threshold: 0.15
   };
 
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in'); // gunakan kelas CSS .fade-in yang sudah ada
-        // jika kamu ingin hanya sekali, unobserve:
+        entry.target.classList.add('fade-in');
         observer.unobserve(entry.target);
       }
     });
   }, ioOptions);
 
-  // Observe semua section + hero
   document.querySelectorAll('section, .hero').forEach(el => io.observe(el));
 
-  // 3) Pastikan hero langsung tampil saat load
   window.addEventListener('load', () => {
     const hero = document.querySelector('.hero');
     if (hero) hero.classList.add('fade-in');
   });
 
-  // 4) (Opsional) fallback untuk browser yang tidak support IntersectionObserver
   if (!('IntersectionObserver' in window)) {
-    // fallback: tambahkan kelas pada semua section agar tampil
     document.querySelectorAll('section, .hero').forEach(el => el.classList.add('fade-in'));
   }
 </script>
